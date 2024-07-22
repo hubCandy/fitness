@@ -12,6 +12,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void add(User user) {
+        //明文密码进行md5加密
+//        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         userMapper.add(user.getUsername(), user.getPassword(), user.getName(),
                 user.getSex(), user.getAge(), user.getEmail());
     }

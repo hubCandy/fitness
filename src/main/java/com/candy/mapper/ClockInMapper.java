@@ -1,6 +1,5 @@
 package com.candy.mapper;
 
-import com.candy.pojo.Action;
 import com.candy.pojo.ClockIn;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
