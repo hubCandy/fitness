@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.candy.mapper.ActionMapper">
+    <!--    条件批量删除 ========================-->
+    <delete id="delete">
+        delete
+        from action_tb
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!--    条件查询 ========================-->
+    <select id="list" resultType="com.candy.pojo.Action">
+        SELECT t2.id,action,part,image,t2.create_time,t2.update_time
+        from part_tb t1,action_tb t2
+        <where>
+            t1.id=t2.part_id
+            <if test="part != null and part != '全部'">
+                and part=#{part}
+            </if>
+        </where>
+        ORDER BY id desc
+
+    </select>
+</mapper>
